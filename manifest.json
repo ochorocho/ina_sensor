@@ -1,0 +1,14 @@
+{
+  "domain": "ina_sensor",
+  "name": "INA219 Sensor",
+  "documentation": "https://github.com/home-assistant/example-custom-config/tree/master/custom_components/example_sensor/",
+  "dependencies": [],
+  "codeowners": [],
+  "requirements": [
+        "psutil",
+        "pi-ina219",
+        "adafruit-circuitpython-ina219",
+        "adafruit-blinka"
+    ],
+  "version": "0.1.0"
+}
