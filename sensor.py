@@ -1,29 +1,44 @@
 """Platform for sensor integration."""
-from homeassistant.const import TEMP_CELSIUS, PERCENTAGE
+from homeassistant.const import POWER_WATT, VOLT
 from homeassistant.helpers.entity import Entity
-import psutil
-import board
-#from ina219 import INA219
 from adafruit_ina219 import ADCResolution, BusVoltageRange, INA219
+import board
+
+DEFAULT_ICON = "mdi:current-dc"
 
 def setup_platform(hass, config, add_entities, discovery_info=None):
     """Set up the sensor platform."""
-    add_entities([ExampleSensor()])
+    address = config.get('address')
+    device = config.get('device')
 
+    add_entities([
+        InaCurrent('current', 'mA', device, address), 
+        InaCurrent('bus_voltage', VOLT, device, address),
+        InaCurrent('shunt_voltage', VOLT, device, address),
+        InaCurrent('power', POWER_WATT, device, address),
+    ])
 
-class ExampleSensor(Entity):
+class InaCurrent(Entity):
     """Representation of a Sensor."""
 
-    def __init__(self):
+    def __init__(self, measure, unit, device, address):
         """Initialize the sensor."""
+        self._measure = measure
+        self._unit = unit
         i2c_bus = board.I2C()
-        self.ina219 = INA219(i2c_bus)
-        self._state = round(self.ina219.current, 2)
+        self.ina219 = INA219(i2c_bus, address)
+        value = getattr(self.ina219, self._measure)
+        self._state = round(value, 2)
 
     @property
     def name(self):
         """Return the name of the sensor."""
-        return 'INA219 Example'
+        return 'INA219 ' + self._measure
+
+    @property
+    def icon(self):
+        """Return the default icon."""
+        return DEFAULT_ICON
 
     @property
     def state(self):
@@ -33,11 +48,12 @@ class ExampleSensor(Entity):
     @property
     def unit_of_measurement(self):
         """Return the unit of measurement."""
-        return "mA"
+        return self._unit
 
     def update(self):
         """Fetch new state data for the sensor.
 
         This is the only method that should fetch new data for Home Assistant.
         """
-        self._state = round(self.ina219.current, 2)
+        value = getattr(self.ina219, self._measure)
+        self._state = round(value, 2)
