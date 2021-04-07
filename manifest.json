@@ -5,10 +5,9 @@
   "dependencies": [],
   "codeowners": [],
   "requirements": [
-        "psutil",
         "pi-ina219",
         "adafruit-circuitpython-ina219",
-        "adafruit-blinka"
+        "adafruit-extended-bus"
     ],
   "version": "0.1.0"
 }
