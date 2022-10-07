@@ -1,0 +1,5 @@
+{
+  "name": "INA219",
+  "content_in_root": true,
+  "homeassistant": "2022.7.0"
+}
