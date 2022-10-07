@@ -1,5 +1,7 @@
 # Home Assistant INA219
 
+With thanks to ochorocho, the original creator.  This fork has been updated to work with Home Assistant 2022.7 and later.  Tested on 2022.10.
+
 `configuration.yaml` example:
 
 ```yaml
