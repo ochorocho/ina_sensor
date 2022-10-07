@@ -1,5 +1,5 @@
 """Platform for sensor integration."""
-from homeassistant.const import POWER_WATT, VOLT
+from homeassistant.const import POWER_WATT, ELECTRIC_POTENTIAL_VOLT
 from homeassistant.helpers.entity import Entity
 from adafruit_ina219 import ADCResolution, BusVoltageRange, INA219
 from adafruit_extended_bus import ExtendedI2C as I2C
@@ -14,8 +14,8 @@ def setup_platform(hass, config, add_entities, discovery_info=None):
 
     add_entities([
         InaCurrent('current', 'mA', device_id, address), 
-        InaCurrent('bus_voltage', VOLT, device_id, address),
-        InaCurrent('shunt_voltage', VOLT, device_id, address),
+        InaCurrent('bus_voltage', ELECTRIC_POTENTIAL_VOLT, device_id, address),
+        InaCurrent('shunt_voltage', ELECTRIC_POTENTIAL_VOLT, device_id, address),
         InaCurrent('power', POWER_WATT, device_id, address),
     ])
 
