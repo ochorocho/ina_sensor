@@ -2,6 +2,8 @@
 
 With thanks to ochorocho, the original creator.  This fork has been updated to work with Home Assistant 2022.7 and later.  Tested on 2022.10.
 
+Adds support for the INA219 current/power/voltage sensor to Home Assistant.
+
 `configuration.yaml` example:
 
 ```yaml
