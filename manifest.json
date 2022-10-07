@@ -5,7 +5,6 @@
   "dependencies": [],
   "codeowners": [],
   "requirements": [
-        "pi-ina219",
         "adafruit-circuitpython-ina219",
         "adafruit-extended-bus"
     ],
