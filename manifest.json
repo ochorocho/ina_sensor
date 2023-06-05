@@ -1,7 +1,7 @@
 {
   "domain": "ina_sensor",
   "name": "INA219 Sensor",
-  "documentation": "https://github.com/andystewart999/ina_sensor",
+  "documentation": "https://github.com/ochorocho/ina_sensor",
   "dependencies": [],
   "codeowners": [],
   "requirements": [
